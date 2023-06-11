@@ -41,10 +41,18 @@ class Serie(Programa):
         return f'{self.nome} - {self.ano} -{self.temporadas} temporadas - {self.likes} Likes'
 
 
-class Playlist(list):
+class Playlist:
     def __init__(self, nome, programas):
         self.nome = nome
-        super().__init__(programas)
+        self._programas = programas
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
 
 
 atlanta = Serie("Atlanta", 2018, 2)
@@ -64,5 +72,5 @@ demolidor.adicionar_like()
 filmes_e_series = [atlanta, demolidor, vingadores, tmep]
 playlist_fim_de_semana = Playlist("playlist_fim_de_semana", filmes_e_series)
 
-for programa in playlist_fim_de_semana:
+for programa in playlist_fim_de_semana.listagem:
     print(programa)
